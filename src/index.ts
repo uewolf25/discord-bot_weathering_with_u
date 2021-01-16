@@ -43,7 +43,6 @@ function GenerateDiscordPayload(
       {
         title: `${date.getMonth() + 1}月${date.getDate()}日の天気`,
         description: `**${weather.description}です。**`,
-        // url: 'fafaf', ここここおおおおおお
         url: `https://openweathermap.org/api/one-call-api#current`,
         // image: `${weatherIconUrl[weather.icon]}`,
         fields: [

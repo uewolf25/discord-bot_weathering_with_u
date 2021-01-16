@@ -20,7 +20,7 @@
 ## 使用方法
 claspのプロジェクトの作り方、環境変数の埋め込みとか詳しくは[この辺に書いてるよ](https://github.com/uewolf25/confirm_form#%E6%BA%96%E5%82%99)  
 今回はDiscordのWebhookとお天気のAPIを使うので、TOKENとAPIキーを取れればおk。  
-プロパティにセットする変数は `TOKEN`, ``
+プロパティにセットする変数は `WEBHOOK`, `SECRETKEY`としている。
 
 ## 戒め
 URLは有効なURLを書こう。コード400より、Fetch出来ません。
@@ -28,7 +28,7 @@ URLは有効なURLを書こう。コード400より、Fetch出来ません。
 ## Todo
 - トリガーの設定:[issue1](https://github.com/uewolf25/discord-bot_weathering_with_u/issues/1)
 - １都市しかまだ設定してないから他も:[issue2](https://github.com/uewolf25/discord-bot_weathering_with_u/issues/2)
-- アバターを埋め込みの中へ:[issu3](https://github.com/uewolf25/discord-bot_weathering_with_u/issues/3)
+- アバターを埋め込みの中へ[ここ](https://github.com/uewolf25/discord-bot_weathering_with_u/blob/96856c9e084aa41b66abb72c20c38c3b9d70a7f7/src/index.ts#L47):[issu3](https://github.com/uewolf25/discord-bot_weathering_with_u/issues/3)
 
 ## API
 APIはOpen Weather Mapを使用する。
