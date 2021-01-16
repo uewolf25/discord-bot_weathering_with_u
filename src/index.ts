@@ -58,7 +58,7 @@ function GenerateDiscordPayload(
           },
           {
             name: '湿度',
-            value: `${Math.round(daily.humidity * 100)}% `,
+            value: `${Math.round(daily.humidity)}% `,
             inline: true,
           },
           {
@@ -71,15 +71,33 @@ function GenerateDiscordPayload(
     ]
   };
 }
+const lat: number = 34.779722;
+const lon: number = 135.469820;
 
-global.PostToDayWeatherToDiscord = (): void => {
-  const forecast = openWeatherMap.GetWeatherForecastToOpenWeatherMapApi(36.366503, 140.470997);
+global.SetTrigger = (): void => {
+  const time = new Date();
+  // 日が変わる時間
+  time.setHours(23);
+  time.setMinutes(59);
+  ScriptApp.newTrigger('PostToDayWeatherToDiscord').timeBased().at(time).create();
+  // // 朝
+  // time.setDate(time.getDay()+1);
+  // time.setHours(08);
+  // time.setMinutes(0);
+  // ScriptApp.newTrigger('PostToDayWeatherToDiscord').timeBased().at(time).create();
+
+  PostToDayWeatherToDiscord();
+}
+
+function PostToDayWeatherToDiscord(): void{
+  const forecast = openWeatherMap.GetWeatherForecastToOpenWeatherMapApi(lat, lon);
   const payload = GenerateDiscordPayload(0, forecast);
   Discord.PostToDiscord(payload);
 };
 
-// global.PostNextDayWeatherToDiscord = (): void => {
-//   const forecast = openWeatherMap.GetWeatherForecastToOpenWeatherMapApi(36.366503, 140.470997);
+// PostNextDayWeatherToDiscord = (): void => {
+//   const forecast = openWeatherMap.GetWeatherForecastToOpenWeatherMapApi(lat, lon);
 //   const payload = GenerateDiscordPayload(1, forecast);
 //   Discord.PostToDiscord(payload);
 // };
+
