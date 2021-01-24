@@ -75,18 +75,27 @@ const lat: number = 34.779722;
 const lon: number = 135.469820;
 
 global.SetTrigger = (): void => {
-  const time = new Date();
-  // 日が変わる時間
-  time.setHours(23);
-  time.setMinutes(59);
+  var time = new Date();
+  time.setDate(time.getDate()+1);
+  SetTimer(8, 0);
+  SetTimer(12, 0);
+  SetTimer(18, 0);
+  SetTimer(0, 1);
+  ScriptApp.newTrigger('SetTrigger').timeBased().at(time).create();
+}
+  
+function SetTimer(h: number, offset:number): void{
+  var time = new Date();
+  time.setDate(time.getDate()+offset);
+  time.setHours(h);
+  time.setMinutes(0);
   ScriptApp.newTrigger('PostToDayWeatherToDiscord').timeBased().at(time).create();
-  // // 朝
-  // time.setDate(time.getDay()+1);
-  // time.setHours(08);
-  // time.setMinutes(0);
-  // ScriptApp.newTrigger('PostToDayWeatherToDiscord').timeBased().at(time).create();
-
-  PostToDayWeatherToDiscord();
+}
+global.deleteTrigger = (): void =>{
+  var allTriggers = ScriptApp.getScriptTriggers();
+  for(var i=0; i < allTriggers.length; i++) {
+      ScriptApp.deleteTrigger(allTriggers[i]);
+  }
 }
 
 function PostToDayWeatherToDiscord(): void{
