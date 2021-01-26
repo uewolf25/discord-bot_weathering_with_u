@@ -98,7 +98,7 @@ global.deleteTrigger = (): void =>{
   }
 }
 
-function PostToDayWeatherToDiscord(): void{
+global.PostToDayWeatherToDiscord = (): void =>{
   const forecast = openWeatherMap.GetWeatherForecastToOpenWeatherMapApi(lat, lon);
   const payload = GenerateDiscordPayload(0, forecast);
   Discord.PostToDiscord(payload);
